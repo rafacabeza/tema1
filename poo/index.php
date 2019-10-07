@@ -7,7 +7,7 @@ class App
     
     public function __construct($nombre, $apellido)
     {
-        echo "Creando un App";
+        echo "Creando un App<br>";
         $this->nombre = $nombre;
         $this->apellido = $apellido;
     }
@@ -29,11 +29,28 @@ class App
         // Clase::metodoEstatico()
         // Clase::constante
     }
+
+    public function vista()
+    {
+        require('vista.php');
+    }
 }
+
 
 $app = new App('Rafa', 'Cabeza');
 
-$app->poo(); //funciona pero poco correcto
-App::poo(); //método estático
-$app->saludar(); //
-echo App::class;
+if (isset($_GET['method'])) {
+    $method = $_GET['method'];
+} else {
+    $method = 'saludar';
+}
+
+
+// $app->poo(); //funciona pero poco correcto
+// App::poo(); //método estático
+if (method_exists($app, $method)) {
+    $app->$method();
+} else {
+    die('metodo no encontrado');    
+    exit('3');
+}
