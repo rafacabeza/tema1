@@ -31,9 +31,10 @@
         echo "<ul>";
         foreach ($wishes as $key => $wish) {
             echo '<li>' 
+            . $key . ': '
             . $wish 
             . ' - <a href="'
-            . "?method=delete&key=$key"
+            . " ?method=delete&key=$key"
             . '">borrar</a>'
             . '</li>';
         } 
